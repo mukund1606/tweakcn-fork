@@ -11,7 +11,7 @@ export const env = createEnv({
     BETTER_AUTH_SECRET: z.string(),
     GOOGLE_API_KEY: z.string(),
     GOOGLE_FONTS_API_KEY: z.string(),
-    PORT: z.number().default(3000),
+    PORT: z.string().default("3000"),
   },
   client: {
     NEXT_PUBLIC_APP_URL: z.url(),
