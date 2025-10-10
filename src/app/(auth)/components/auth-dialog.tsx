@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/revola";
 import { authClient } from "@/lib/auth-client";
 
+const isProduction = process.env.NODE_ENV === "production";
+
 interface AuthDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -131,27 +133,29 @@ export function AuthDialog({
               </div>
             )}
 
-            <div className="pt-2">
-              <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                  <span className="w-full border-t" />
+            {!isProduction && (
+              <div className="pt-2">
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <span className="w-full border-t" />
+                  </div>
+                  <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-muted text-muted-foreground px-2">
+                      {isSignIn ? "New to tweakcn?" : "Already have an account?"}
+                    </span>
+                  </div>
                 </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-muted text-muted-foreground px-2">
-                    {isSignIn ? "New to tweakcn?" : "Already have an account?"}
-                  </span>
-                </div>
-              </div>
 
-              <div className="mt-6 text-center">
-                <button
-                  onClick={toggleMode}
-                  className="text-primary focus:ring-primary text-sm font-medium hover:underline focus:ring-2 focus:ring-offset-2 focus:outline-none"
-                >
-                  {isSignIn ? "Create an account" : "Sign in to your account"}
-                </button>
+                <div className="mt-6 text-center">
+                  <button
+                    onClick={toggleMode}
+                    className="text-primary focus:ring-primary text-sm font-medium hover:underline focus:ring-2 focus:ring-offset-2 focus:outline-none"
+                  >
+                    {isSignIn ? "Create an account" : "Sign in to your account"}
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </ResponsiveDialogContent>

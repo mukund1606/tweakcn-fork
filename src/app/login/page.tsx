@@ -16,6 +16,8 @@ import { Label } from "@/components/ui/label";
 import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 
+const isProduction = process.env.NODE_ENV === "production";
+
 export default function LoginPage() {
   const searchParams = useSearchParams();
   const [isSignIn, setIsSignIn] = useState(true);
@@ -144,18 +146,6 @@ export default function LoginPage() {
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <Label htmlFor="password">Password</Label>
-                  {isSignIn && (
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        // TODO: Implement forgot password functionality
-                      }}
-                      className="text-primary hover:text-primary/80 text-xs font-medium transition-colors"
-                    >
-                      Forgot password?
-                    </a>
-                  )}
                 </div>
                 <Input
                   id="password"
@@ -208,29 +198,33 @@ export default function LoginPage() {
                 )}
               </Button>
 
-              <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                  <span className="w-full border-t" />
-                </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-card text-muted-foreground px-2">
-                    {isSignIn ? "New to tweakcn?" : "Already have an account?"}
-                  </span>
-                </div>
-              </div>
+              {!isProduction && (
+                <>
+                  <div className="relative">
+                    <div className="absolute inset-0 flex items-center">
+                      <span className="w-full border-t" />
+                    </div>
+                    <div className="relative flex justify-center text-xs uppercase">
+                      <span className="bg-card text-muted-foreground px-2">
+                        {isSignIn ? "New to tweakcn?" : "Already have an account?"}
+                      </span>
+                    </div>
+                  </div>
 
-              <div className="text-center">
-                <button
-                  type="button"
-                  onClick={toggleMode}
-                  disabled={isLoading}
-                  className={cn(
-                    "text-primary hover:text-primary/80 focus:ring-primary text-sm font-medium transition-colors hover:underline focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:pointer-events-none disabled:opacity-50",
-                  )}
-                >
-                  {isSignIn ? "Create an account" : "Sign in to your account"}
-                </button>
-              </div>
+                  <div className="text-center">
+                    <button
+                      type="button"
+                      onClick={toggleMode}
+                      disabled={isLoading}
+                      className={cn(
+                        "text-primary hover:text-primary/80 focus:ring-primary text-sm font-medium transition-colors hover:underline focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:pointer-events-none disabled:opacity-50",
+                      )}
+                    >
+                      {isSignIn ? "Create an account" : "Sign in to your account"}
+                    </button>
+                  </div>
+                </>
+              )}
             </form>
           </CardContent>
         </Card>
