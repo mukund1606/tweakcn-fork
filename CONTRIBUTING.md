@@ -76,11 +76,12 @@ Even if you don't plan to write code, there are many ways to contribute:
 
 ### Set up the development environment (follow closely)
 
-1.  **Configure Environment Variables:** 
+1.  **Configure Environment Variables:**
 
     ```bash
     cp .env.example .env.local # Copy the example environment file
     ```
+
     - Open the `.env.local` file and replace the placeholder values with your actual credentials obtained from the services.
 
 2.  **Apply Database Schema:** Push the database schema defined in `db/schema.ts` to your Neon database using Drizzle Kit:
@@ -172,7 +173,6 @@ Once you've made your changes and tested them locally, follow these steps to sub
     Replace `your-descriptive-branch-name` with the actual name of your branch.
 
 4.  **Open a Pull Request (PR):**
-
     - Go to the original [tweakcn repository](https://github.com/jnsahaj/tweakcn) on GitHub.
     - You should see a prompt suggesting you create a Pull Request from your recently pushed branch. Click on it. If not, navigate to the "Pull requests" tab and click "New pull request".
     - Ensure the base repository is `jnsahaj/tweakcn` and the base branch is `main` (or the appropriate target branch).
@@ -180,7 +180,6 @@ Once you've made your changes and tested them locally, follow these steps to sub
     - **Write a Clear Description:** Fill out the pull request template (if one exists). Provide a clear title and a detailed description of the changes you've made. Explain _why_ you made the changes and link to any relevant GitHub Issues (e.g., "Closes #123").
 
 5.  **Review Process:**
-
     - Once submitted, maintainers will review your pull request.
     - Maintainers may provide feedback or request changes directly on the pull request. Please address these comments by pushing further commits to your branch.
     - Once approved, a maintainer will merge your changes into the main project.

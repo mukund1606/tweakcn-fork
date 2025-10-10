@@ -1,7 +1,8 @@
 import fs from "fs";
 import path from "path";
-import { defaultPresets } from "../utils/theme-presets";
+
 import { generateThemeRegistryFromPreset } from "@/utils/registry/themes";
+import { defaultPresets } from "@/utils/theme-presets";
 
 interface ThemeRegistry {
   $schema: string;
@@ -25,9 +26,7 @@ function generateRegistry() {
       name,
       type: "registry:style",
       title: preset.label || name,
-      description: `A theme based on the ${
-        preset.label || name
-      } color palette.`,
+      description: `A theme based on the ${preset.label || name} color palette.`,
       css: registryItem.css,
       cssVars: registryItem.cssVars,
     };
